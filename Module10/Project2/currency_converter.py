@@ -25,7 +25,7 @@ def main():
 
   print(f"USD to EUR: {convert_usd_euro(amount)}")
   print(f"USD to GBP: {convert_usd_to_gbp(amount)}")
-  print(f"USD to JPY: {convert_usd_to_yen(amount)}")
+  print(f"USD to YEN: {convert_usd_to_yen(amount)}")
 
 
 # This ensures main() runs only when the file is executed directly
