@@ -7,5 +7,23 @@
             "Cheese"
         ],
         "instructions": "Boil spaghetti, add sauce, serve."
+    },
+    {
+        "title": "Pasta",
+        "ingredients": [
+            "Pasta",
+            "Tomato",
+            "Cheese"
+        ],
+        "instructions": "Boil pasta, add sauce, serve."
+    },
+    {
+        "title": "Pizza",
+        "ingredients": [
+            "Pasta",
+            "Tomato",
+            "Cheese"
+        ],
+        "instructions": "Boil pasta, add sauce, serve."
     }
 ]
