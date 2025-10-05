@@ -1,29 +1,14 @@
 [
     {
-        "title": "Spaghetti",
+        "title": "Salad",
         "ingredients": [
-            "Spaghetti",
-            "Tomato Sauce",
-            "Cheese"
+            "tomato",
+            "onion",
+            "olives",
+            "lemon",
+            "lettes",
+            "cucumber"
         ],
-        "instructions": "Boil spaghetti, add sauce, serve."
-    },
-    {
-        "title": "Pasta",
-        "ingredients": [
-            "Pasta",
-            "Tomato",
-            "Cheese"
-        ],
-        "instructions": "Boil pasta, add sauce, serve."
-    },
-    {
-        "title": "Pizza",
-        "ingredients": [
-            "Pasta",
-            "Tomato",
-            "Cheese"
-        ],
-        "instructions": "Boil pasta, add sauce, serve."
+        "instructions": "mix together"
     }
 ]

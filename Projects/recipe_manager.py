@@ -29,10 +29,6 @@ def save_recipes(recipes):
         json.dump(recipes, file, ensure_ascii=False, indent=4)
     print("Recipes saved successfully!")
 
-# ------------------- Load existing recipes -------------------
-
-recipes = load_recipes()  # Read recipes from JSON file
-
 # ------------------- Core functions -------------------
 
 def add_new_recipe(recipes, title, ingredients, instructions):
@@ -90,24 +86,88 @@ def delete_recipe(recipes, index):
     removed = recipes.pop(index)  # remove recipe by index. With pop we remove the recipe from the list and display its name.
     print(f"Recipe '{removed['title']}' deleted successfully!") 
 
-# ------------------- Example usage -------------------
-add_new_recipe(recipes, "Pasta", ["Pasta", "Tomato", "Cheese"], "Boil pasta, add sauce, serve.")
-add_new_recipe(recipes, "Pizza", ["Pasta", "Tomato", "Cheese"], "Boil pasta, add sauce, serve.")
+# ------------------- Load existing recipes -------------------
 
-print("\nViewing all recipes:")
-view_recipes(recipes)
+recipes = load_recipes()  # Read recipes from JSON file
 
-print("\nSearching for 'pasta':")
-results = search_recipes(recipes, "pasta")
-view_recipes(results)
+# -------------------  CLI Functions  -------------------
+def main_menu():
+    # Display the main menu and return user's choice.
+    print("====Recipe Manager====")
+    print("1. Add a new recipe")
+    print("2. View all recipes")
+    print("3. Search recipes by title")
+    print("4. Edit a recipe")
+    print("5. Delete a recipe")
+    print("6. Exit and save")
+    return input("Enter your choice (1-6):")
 
-edit_recipe(recipes, 0, new_title="Spaghetti", new_ingredients=["Spaghetti", "Tomato Sauce", "Cheese"], new_instructions="Boil spaghetti, add sauce, serve.")
-print("\nAfter editing:")
-view_recipes(recipes)
+# ------------------- CLI Loop -------------------
+while True:
+    choice = main_menu()
 
-delete_recipe(recipes, 1)
-print("\nAfter deleting:")
-view_recipes(recipes)  
+ # --- Choice 1: Add a new recipe ----
+    if choice == "1":
+        title = input("Enter recipe title: ")
+        ingredients = input("Enter ingredients (comma separated): ").split(",")
+        ingredients = [i.strip() for i in ingredients]
+        instructions= input("Enter instructions: ")
+        add_new_recipe(recipes, title, ingredients, instructions)
+    
+ # --- Choice 2: View all recipes ---
+    elif choice == "2":
+        view_recipes(recipes)
 
-# ------------------- Save at the end -------------------
-save_recipes(recipes)
+ # --- Choice 3: Search recipes by title -----
+    elif choice == "3":
+        keyword = input("Enter keyword to search: ")
+        result = search_recipes(recipes, keyword)
+        view_recipes(result)
+
+ # -------- Choice 4: Edit a recipe -----
+    elif choice == "4":
+        # First show all recipes so user knows the numbers
+        view_recipes(recipes)
+        # Ask which recipe to edit (convert to list index)
+        try:
+            index = int(input("Enter recipe number to edit: ")) -1
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+        # Ask for new title (Enter to skip)
+        new_title = input("Enter new title OR (press Enter to skip): ")
+         # Ask for new ingredients (Enter to skip)
+        new_ingredients = input("New ingredients (comma-separated, press Enter to skip): ")
+        if new_ingredients:
+             # Convert string to list and remove extra spaces
+            new_ingredients = [i.strip() for i in new_ingredients.split(",")]
+        else:
+            new_ingredients = None
+             # Ask for new instructions (Enter to skip)
+        new_instructions = input("Enter new instructions (or press Enter to keep current):")
+        if new_instructions == "":
+            new_instructions = None
+             # Apply the edits
+        edit_recipe(recipes, index, new_title or None, new_ingredients, new_instructions)
+    
+     # ------------------- Choice 5: Delete a recipe -------------------
+    elif choice == "5":
+        # Show all recipes so user knows the numbers
+        view_recipes(recipes)
+        # Ask which recipe to delete (convert to list index)
+        try:
+            index = int(input("Enter recipe number to delete: ")) -1
+        except ValueError:
+            print("Invalid input. please enter a number.")
+            continue
+        # Remove the selected recipe
+        delete_recipe(recipes, index)
+
+  # ------------------- Choice 6: Exit and save -------------------
+    elif choice == "6":
+        # Save all recipes to the JSON file
+        save_recipes(recipes)
+        print("Exiting Recipe Manager. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please enter a number between 1 and 6.")
