@@ -1,12 +1,9 @@
 [
     {
-        "title": "Salad",
+        "title": "salad",
         "ingredients": [
             "tomato",
             "onion",
-            "olives",
-            "lemon",
-            "lettes",
             "cucumber"
         ],
         "instructions": "mix together"
