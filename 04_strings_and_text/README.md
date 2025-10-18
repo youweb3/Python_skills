@@ -16,3 +16,12 @@ This section covers basic string handling operations in Python, including user i
   - String methods (`upper()`, `lower()`, `len()`)
   - Index slicing
   - Loops and user interaction
+
+### B. User Profile Generator
+This project collects user information (first name, last name, age, city, and occupation) and generates a formatted user profile.
+
+## Features
+- Combine first name and last name using **string concatenation**
+- Format user details into a readable sentence using **string formatting**
+- Use **escape characters** (`\n`, `\"`) to structure the profile
+- Apply **string methods**: `.upper()`, `.lower()`, `.capitalize()`, `.title()
